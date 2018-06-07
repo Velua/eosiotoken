@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 
 class BalanceForm extends Component {
@@ -23,6 +24,7 @@ onChange(e) {
 
 send() {
     const { code, account } = this.state;
+    toast(`Looking up ${account}`)
     this.props.fetchBalance({ code, account });
 }
 
@@ -40,7 +42,7 @@ render() {
         </FormGroup>
         <Button onClick={this.send}>Lookup</Button>
         
-        {this.props.balances ? this.props.balances.map((balance, index) => <p key={index}>{balance}</p>) : ''}
+        {this.props.balances ? this.props.balances.length > 0 ? this.props.balances.map((balance, index) => <p key={index}>{balance}</p>) : <p>No tokens!</p> : ''}
         
     </form>
     );

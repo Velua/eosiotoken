@@ -8,6 +8,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "react-toastify": "^4.0.2",
     "reactstrap": "^6.1.0"
   },
   "scripts": {

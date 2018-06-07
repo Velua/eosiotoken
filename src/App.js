@@ -5,17 +5,13 @@ import TransferForm from './containers/TransferForm';
 import BalanceForm from './containers/BalanceForm';
 import Jumber from './components/Jumber';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 import eosjs from 'eosjs';
 
-const privateKeys = ["5KdwwCES75DbEsAQr5YViVTNR4dtz1jSRa2qgtCewFzZWXw6YYG",
-"5KdY61tockKqKaWsjjoJZXTrRx3hwAhiF932CnDyj9Uh4pdWwkK",
-"5JYv2CvmA1HhQkLVyvhfKjU58ux7FJfEegvgENLmwM5n6bfJzRF",
-"5JmnLQBSRY6VMm3sbV5ypANR4KufoFeYBLh5j78u92rqaT2wqCj",
-"5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3",
-"5KCM27WPRx5TNNrkBWZysnNbsLuaDvTwhX7GzM9JKdyGtRQh38q",
-"5JDuaRen74yTcTozAR4xWooXBEonPkYPyMeESHSA8iFZyqDDHUM"];
-
-
+const chainId= "7d47aae09c97dbc21d52c6d9f17bb70a1f1f2fda5f81b3ef18979b74b2070d8c"
+const privateKeys = ["5KXE4YAQSPmJn89R12gWW3kTRdZGjQBBbjyv1R9gqjxqxZzpzH4"];
+const httpEndpoint = 'http://dolphin.eosblocksmith.io:8888'
 
 class App extends Component {
 
@@ -23,12 +19,13 @@ class App extends Component {
   constructor(){
     super()
     this.eos = eosjs({
-      httpEndpoint: 'http://127.0.0.1:7777',
+      chainId,
+      httpEndpoint,
       keyProvider: privateKeys
     })
 
     this.state = {
-      balances: []
+      balances: null
     }
 
     this.sendEos = this.sendEos.bind(this)
@@ -55,7 +52,16 @@ class App extends Component {
 
     return (
       <div className="App">
+        <ToastContainer />
         <Jumber />
+        <div className="section">
+          <h1>Set Eosio.token contract</h1>
+          <p>This will create your own version of the eosio.token smart contract.</p>
+        </div>
+        <div className="section">
+          <h1>Issue</h1>
+          <p>Issue your own crypto token! Enter a symbol and the max allocation</p>
+        </div>
         <div className="section">
           <h1>Transfer</h1>
           <TransferForm sendEos={this.sendEos}/>
@@ -64,7 +70,8 @@ class App extends Component {
           <h1>Check Balance</h1>
           <BalanceForm fetchBalance={this.fetchBalance} balances={this.state.balances}/>
         </div>
-        <button onClick={this.tester} />
+
+        <button onClick={() => toast("wowsa")} >OverHere</button>
       </div>
     );
   }
