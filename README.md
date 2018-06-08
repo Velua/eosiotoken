@@ -3,3 +3,6 @@ Simple dApp which connects to the Jungle testnet and transfer eosio.tokens from 
 
 ## Coming soon. 
 - Deploy your own eosio.token contract and issue your own token. (Not standard practice, testnet fun only.)
+
+## Demo
+[Demo](http://johnwilliamson.io/eosiotoken)
