@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TransferForm from './containers/TransferForm';
 import BalanceForm from './containers/BalanceForm';
+import PrivateKeyForm from './containers/PrivateKeyForm';
 import Jumber from './components/Jumber';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import eosjs from 'eosjs';
 
 const chainId= "7d47aae09c97dbc21d52c6d9f17bb70a1f1f2fda5f81b3ef18979b74b2070d8c"
-const privateKeys = ["5KXE4YAQSPmJn89R12gWW3kTRdZGjQBBbjyv1R9gqjxqxZzpzH4"];
+const privateKeys = [];
 const httpEndpoint = 'http://dolphin.eosblocksmith.io:8888'
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
 
     this.sendEos = this.sendEos.bind(this)
     this.fetchBalance = this.fetchBalance.bind(this)
+    this.setPrivateKey = this.setPrivateKey.bind(this)
   }
 
   componentDidMount() {
@@ -47,13 +49,27 @@ class App extends Component {
     this.eos.getCurrencyBalance(payload).then(balances => this.setState({ balances })).catch(error => console.log(error))
   }
 
+  setPrivateKey(privateKey) {
+    const config = {
+      chainId: '7d47aae09c97dbc21d52c6d9f17bb70a1f1f2fda5f81b3ef18979b74b2070d8c',
+      keyProvider: [privateKey],
+      httpEndpoint: "http://dolphin.eosblocksmith.io:8888"
+    }
+    console.log(config)
+    this.eos = eosjs(config)
+  }
 
   render() {
+
 
     return (
       <div className="App">
         <ToastContainer />
         <Jumber />
+        <div className="">
+          <h1>Private Key</h1>
+          <PrivateKeyForm setPrivateKey={this.setPrivateKey} />
+        </div>
         <div className="section">
           <h1>Set Eosio.token contract</h1>
           <p>This will create your own version of the eosio.token smart contract.</p>
@@ -71,7 +87,7 @@ class App extends Component {
           <BalanceForm fetchBalance={this.fetchBalance} balances={this.state.balances}/>
         </div>
 
-        <button onClick={() => toast("wowsa")} >OverHere</button>
+        <button onClick={() => console.log('pressed')} >OverHere</button>
       </div>
     );
   }

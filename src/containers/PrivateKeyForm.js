@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Alert, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { toast } from 'react-toastify';
 
 
@@ -8,7 +8,7 @@ class BalanceForm extends Component {
 constructor(props) {
     super(props);
     this.state = {
-        code: 'eosio.token',
+        privateKey: '',
         account: ''
     };
 
@@ -24,27 +24,27 @@ onChange(e) {
 }
 
 send() {
-    const { code, account } = this.state;
-    toast(`Checking balance: ${account}`)
-    this.props.fetchBalance({ code, account });
+    const { privateKey, account } = this.state;
+    toast(`Loading private key: ${account}`)
+    this.props.setPrivateKey(privateKey);
 }
 
 render() {
     console.log(this.state);
     return (
     <form>
+    <Alert color="danger">
+        Entering Private keys on websites like this is not safe, enter only testnet keys. 
+    </Alert>
         <FormGroup>
-            <Label for="code">Code (Smart Contract) </Label>
-            <Input type="text" value={this.state.code} name="code" onChange={this.onChange} />
+            <Label for="privateKey">Private Key </Label>
+            <Input type="text" value={this.state.privateKey} name="privateKey" onChange={this.onChange} />
         </FormGroup>
         <FormGroup>
             <Label for="account">Account Name </Label>
             <Input type="text" value={this.state.account} name="account" onChange={this.onChange} />
         </FormGroup>
-        <Button onClick={this.send}>Lookup</Button>
-        
-        {this.props.balances ? this.props.balances.length > 0 ? this.props.balances.map((balance, index) => <p key={index}>{balance}</p>) : <p>No tokens!</p> : ''}
-        
+        <Button onClick={this.send}>Set Private Key</Button>
     </form>
     );
 }

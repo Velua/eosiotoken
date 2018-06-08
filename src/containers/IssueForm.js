@@ -3,13 +3,14 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { toast } from 'react-toastify';
 
 
-class BalanceForm extends Component {
+class IssueForm extends Component {
     
 constructor(props) {
     super(props);
     this.state = {
-        code: 'eosio.token',
-        account: ''
+        owner: '',
+        amount: '',
+        symbol: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -50,4 +51,4 @@ render() {
 }
 }
 
-export default BalanceForm;
+export default IssueForm;
