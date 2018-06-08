@@ -40,10 +40,10 @@ render() {
             <Label for="privateKey">Private Key </Label>
             <Input type="text" value={this.state.privateKey} name="privateKey" onChange={this.onChange} />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
             <Label for="account">Account Name </Label>
             <Input type="text" value={this.state.account} name="account" onChange={this.onChange} />
-        </FormGroup>
+        </FormGroup> */}
         <Button onClick={this.send}>Set Private Key</Button>
     </form>
     );

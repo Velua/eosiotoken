@@ -9,10 +9,14 @@ import Jumber from './components/Jumber';
 import { ToastContainer, toast } from 'react-toastify';
 
 import eosjs from 'eosjs';
+import contractWast from './contractWast';
+import contractAbi from './contractAbi';
 
 const chainId= "7d47aae09c97dbc21d52c6d9f17bb70a1f1f2fda5f81b3ef18979b74b2070d8c"
 const privateKeys = [];
 const httpEndpoint = 'http://dolphin.eosblocksmith.io:8888'
+
+
 
 class App extends Component {
 
@@ -32,6 +36,7 @@ class App extends Component {
     this.sendEos = this.sendEos.bind(this)
     this.fetchBalance = this.fetchBalance.bind(this)
     this.setPrivateKey = this.setPrivateKey.bind(this)
+    this.setContract = this.setContract.bind(this)
   }
 
   componentDidMount() {
@@ -55,12 +60,16 @@ class App extends Component {
       keyProvider: [privateKey],
       httpEndpoint: "http://dolphin.eosblocksmith.io:8888"
     }
-    console.log(config)
     this.eos = eosjs(config)
   }
 
-  render() {
+  setContract() {
 
+  }
+
+  render() {
+    
+    console.log(contractAbi)
 
     return (
       <div className="App">
@@ -72,10 +81,12 @@ class App extends Component {
         </div>
         <div className="section">
           <h1>Set Eosio.token contract</h1>
+          <h2>COMING SOON.</h2>
           <p>This will create your own version of the eosio.token smart contract.</p>
         </div>
         <div className="section">
           <h1>Issue</h1>
+          <h2>COMING SOON.</h2>
           <p>Issue your own crypto token! Enter a symbol and the max allocation</p>
         </div>
         <div className="section">
@@ -87,7 +98,7 @@ class App extends Component {
           <BalanceForm fetchBalance={this.fetchBalance} balances={this.state.balances}/>
         </div>
 
-        <button onClick={() => console.log('pressed')} >OverHere</button>
+        <button onClick={this.setContract} >OverHere</button>
       </div>
     );
   }
