@@ -6,6 +6,7 @@ class TransferForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      code: "",
       from: "",
       quantity: "",
       to: "",
@@ -32,6 +33,10 @@ class TransferForm extends Component {
     console.log(this.state);
     return (
       <form>
+        <FormGroup>
+          <Label for="from">Code (Smart Contract)</Label>
+          <Input type="text" value={this.state.code} name="code" onChange={this.onChange} />
+        </FormGroup>
         <FormGroup>
           <Label for="from">From </Label>
           <Input type="text" value={this.state.from} name="from" onChange={this.onChange} />
