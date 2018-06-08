@@ -6,7 +6,7 @@ class TransferForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: "",
+      code: "eosio.token",
       from: "",
       quantity: "",
       to: "",
