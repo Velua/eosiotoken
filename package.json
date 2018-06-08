@@ -2,6 +2,7 @@
   "name": "eosiotoken",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://johnwilliamson.io/eosiotoken",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "eosjs": "^14.1.0",
